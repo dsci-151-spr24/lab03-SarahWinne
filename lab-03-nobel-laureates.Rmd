@@ -275,6 +275,18 @@ This means you'll need to define this data frame in your R Markdown document, ev
     -   For each facet you should have two bars, one for winners in the US and one for Other.
     -   Flip the coordinates so the bars are horizontal, not vertical.
 
+```{r}
+
+library(ggplot2)
+
+ggplot(data = nobel_living_science, aes(y=country_us)) +
+  geom_bar() +
+  facet_wrap(~category)
+       
+```
+
+For each category, there are more people in the US than other. 
+
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.d*
 
 ## But of those US-based Nobel laureates, many were born in other countries
