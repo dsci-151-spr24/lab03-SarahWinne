@@ -325,7 +325,7 @@ ggplot(data = nobel_living_science, aes(y=country_us, fill=born_country_us)) +
        
 ```
 
-The graphs do support the articles claim that many noble laureats, though based in the US, were born in other countries. This is shown by the significant chunk of red(those born in not the US)
+The graphs do support the articles claim that many noble laureats, though based in the US, were born in other countries. This is shown by the significant chunk of red(those born in not the US) in the USA country for how many nobel laureats there are(to the point where those born in other countries either outnumber those born in the US for three of the graphs).
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
