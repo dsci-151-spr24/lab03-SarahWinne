@@ -251,7 +251,7 @@ If not, we set the `country_us` to `"Other"`.
 Note that we can achieve the same result using the `fct_other()` function we've seen before (i.e. with `country_us = fct_other(country, "USA")`). We decided to use the `if_else()` here to show you one example of an if statement in R.
 ```
 
-```{r}
+```{r mutate_nobel_living}
 nobel_living <- nobel_living %>%
   mutate(
     country_us = if_else(country == "USA", "USA", "Other")
@@ -260,7 +260,7 @@ nobel_living <- nobel_living %>%
 
 Next, we will limit our analysis to only the following categories: Physics, Medicine, Chemistry, and Economics.
 
-```{r}
+```{r filter_nobel_science}
 nobel_living_science <- nobel_living %>%
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics"))
 ```
@@ -275,7 +275,7 @@ This means you'll need to define this data frame in your R Markdown document, ev
     -   For each facet you should have two bars, one for winners in the US and one for Other.
     -   Flip the coordinates so the bars are horizontal, not vertical.
 
-```{r}
+```{r nobel_bar_plot_country}
 
 library(ggplot2)
 
@@ -298,7 +298,7 @@ For each category, there are more people in the US than other.
 4.  Create a new variable called `born_country_us` that has the value `"USA"` if the laureate is born in the US, and `"Other"` otherwise.
     How many of the winners are born in the US?
     
-```{r}
+```{r nobel_living_scienctist_country_count}
 nobel_living_science <- nobel_living_science %>%
   mutate(
     born_country_us = if_else(born_country == "USA", "USA", "Other")
@@ -317,7 +317,7 @@ nobel_living_science %>%
     -   Within each facet, there should be a bar for whether the laureate won the award in the US or not.
     -   Each bar should have segments for whether the laureate was born in the US or not.
 
-```{r}
+```{r nobel_plot_living_country_and_birthplace}
 
 ggplot(data = nobel_living_science, aes(y=country_us, fill=born_country_us)) +
   geom_bar() +
@@ -336,6 +336,17 @@ Note that your bar plot won't exactly match the one from the Buzzfeed article. T
 ```
 
 6.  In a single pipeline, filter for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the `count()` function) for their birth country (`born_country`) and arrange the resulting data frame in descending order of number of observations for each country. Which country is the most common?
+
+```{r nobel_plot_living_country_not_us_count}
+
+nobel_living_science %>%
+  filter(born_country_us == "Other") %>%
+  count(born_country) %>%
+  arrange(desc(n))
+       
+```
+
+***Germany is the most common with 20, followed by Japan and the UK***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
